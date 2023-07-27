@@ -16,6 +16,6 @@ export const get = async (url, params = {}) => {
         return data;
     } catch (error) {
         console.error(error);
-        return [];
+        return error;
     }
 }
