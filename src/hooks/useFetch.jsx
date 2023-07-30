@@ -11,14 +11,7 @@ const useFetch = (url) => {
         setIsLoading(true);
         setData(null);
         setError(null);
-        
         getDataFromApi(url)
-            .then(res => {
-                if (!res.ok) {
-                    throw Error("Could not fetch the data for that resource");
-                }
-                return res.json();
-            })
             .then(data => {
                 setData(data);
                 setIsLoading(false);
