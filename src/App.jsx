@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getApiConfiguration } from "./store/homeSlice";
 
-import { get } from "./utils/api";
+import { getDataFromApi } from "./utils/api";
 import Home from "./pages/home/Home";
 import Detail from "./pages/details/Detail";
 import SearchResult from "./pages/searchResults/SearchResult";
@@ -16,15 +16,24 @@ import Footer from "./components/footer/Footer";
 function App() {
 
   const dispatch = useDispatch();
-  const {url} = useSelector(state => state.home);
+
   const getData = async () => {
-    let data = await get('/movie/popular');
-    dispatch(getApiConfiguration(data));
+    let data = await getDataFromApi('/configuration');
+
+    let url = {
+      image_baseUrl: data.images.secure_base_url,
+      backdrop: data.images.secure_base_url + "original",
+      poster: data.images.secure_base_url + "original",
+      profile: data.images.secure_base_url + "original",
+    };
+    
+    dispatch(getApiConfiguration(url));
   }
 
   useEffect(() => {
     getData();
   }, []);
+
   return (
     <Router>
       <Header />
