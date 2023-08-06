@@ -27,6 +27,16 @@ const Header = () => {
     }
   }
 
+  const navigationHandler = (type) => {
+    let path = '/explore';
+    if (type === 'movie') {
+      navigate(`${path}/movie`);
+    } else if (type === 'tv') {
+      navigate(`${path}/tv`);
+    }
+    setMobileMenu(false);
+  }
+
   const openMobileMenu = () => {
     setMobileMenu(true);
     setShowSearch(false);
@@ -44,10 +54,10 @@ const Header = () => {
           <img src={logo} alt="" />
         </div>
         <ul className="menuItems">
-          <li className="menuItem">Movies</li>
-          <li className="menuItem">TV Shows</li>
+          <li className="menuItem" onClick={() => navigationHandler('movie')}>Movies</li>
+          <li className="menuItem" onClick={() => navigationHandler('tv')}>TV Shows</li>
           <li className="menuItem">
-            <HiOutlineSearch />
+            <HiOutlineSearch onClick={openSearch} />
           </li>
         </ul>
 
