@@ -14,7 +14,7 @@ const Trending = () => {
         setTimeWindow(tab.toLowerCase());
     }
 
-    const { data, isLoading } = useFetch(`/trending/all/${timeWindow}?`);
+    const { data, isLoading } = useFetch(`/trending/all/${timeWindow}`);
 
     return (
         <div className='carouselSection'>

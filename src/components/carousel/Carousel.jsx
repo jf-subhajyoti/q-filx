@@ -12,7 +12,7 @@ import Genres from "../genres/Genres";
 
 import "./style.scss";
 
-const Carousel = ({ data, isLoading }) => {
+const Carousel = ({ data, isLoading, media_type }) => {
 
     const navigate = useNavigate();
     const carouselContainer = useRef();
@@ -51,7 +51,7 @@ const Carousel = ({ data, isLoading }) => {
                                 data?.map((item) => {
                                     const posterUrl = item.poster_path ? `${url.poster}${item.poster_path}` : PosterFallback;
                                     return (
-                                        <div key={item.id} className="carouselItem" onClick={() => navigate(`/${item.media_type}/${item.id}`)}>
+                                        <div key={item.id} className="carouselItem" onClick={() => navigate(`/${item.media_type || media_type}/${item.id}`)}>
                                             <div className="posterBlock">
                                                 <Img src={posterUrl} alt={item.title} />
                                                 <CircleRating rating={item.vote_average.toFixed(1)} />
