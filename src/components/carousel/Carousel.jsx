@@ -12,7 +12,7 @@ import Genres from "../genres/Genres";
 
 import "./style.scss";
 
-const Carousel = ({ data, isLoading, media_type }) => {
+const Carousel = ({ data, isLoading, media_type, title }) => {
 
     const navigate = useNavigate();
     const carouselContainer = useRef();
@@ -42,6 +42,7 @@ const Carousel = ({ data, isLoading, media_type }) => {
     return (
         <div className="carousel">
             <ContentWrapper>
+                {title && <div className="carouselTitle">{title}</div>}
                 <BsFillArrowLeftCircleFill className="arrow carouselLeftNav" onClick={() => navigation("left")} />
                 <BsFillArrowRightCircleFill className="arrow carouselRighttNav" onClick={() => navigation("right")} />
                 {
